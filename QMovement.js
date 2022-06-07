@@ -2318,44 +2318,6 @@ function ColliderManager() {
           xPlus = + distance;
           break;
       };
-      //xPlus *= 48;
-      //yPlus *= 48; 
-      /*for (let i = 0, xTest = 0, yTest = 0, dis = 0; i < distance; i++){
-        if (xPlus < 0){xTest = this._px + xPlus - i} else {
-          xTest = this._px + xPlus + i
-        }
-        if (yPlus < 0){yTest = this._py + yPlus - i} else {
-          yTest = this._py + yPlus + i
-        }
-        //dis = i * 48;
-        //xTest = Math.round(xTest);
-        //yTest = Math.round(yTest);
-        if (this.canPixelPass(xTest, yTest, this.lastDirection)) {
-          console.log(xTest, yTest, `success`)
-        }
-        else {
-          console.log(xTest, yTest, `fail`)
-          return;
-        }
-      }*/
-      /*let xTest = Math.round(this._x += xPlus);
-      let yTest = Math.round(this._y += yPlus);
-      if (this.canPass(xTest, yTest, this.lastDirection)) {
-        console.log(`success`)
-      }
-      else {
-        console.log(`fail`)
-        return;
-      }*/
-    /*} else {
-      if (this.canPass(Math.round(this._x += xPlus), Math.round(this._y += yPlus), this.lastDirection)) {
-        console.log(`success`)
-      }
-      else {
-        console.log(`fail`)
-        return;
-      }
-    }*/
   }
     this.setDirection(this.lastDirection);
     this._x += xPlus;
