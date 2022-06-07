@@ -583,72 +583,72 @@ Imported.QMovement = '1.6.3';
  *
  * @tags movement, pixel, character
  */
- /*~struct~Collider:
- * @param Type
- * @desc Set to box or circle
- * @type select
- * @option Box
- * @value box
- * @option Circle
- * @value circle
- * @default box
- *
- * @param Width
- * @desc Set to the width of the collider.
- * @type Number
- * @default 36
- *
- * @param Height
- * @desc Set to the height of the collider.
- * @type Number
- * @default 24
- *
- * @param Offset X
- * @desc Set to the x offset of the collider.
- * @type Number
- * @min -9999
- * @default 6
- *
- * @param Offset Y
- * @desc Set to the y offset of the collider.
- * @type Number
- * @min -9999
- * @default 24
- */
- /*~struct~ColliderPreset:
- * @param ID
- * @desc The ID of this preset, needs to be unique!
- * @default
- *
- * @param Type
- * @desc Set to box or circle
- * @type select
- * @option Box
- * @value box
- * @option Circle
- * @value circle
- * @default box
- *
- * @param Width
- * @desc Set to the width of the collider.
- * @type Number
- * @default 36
- *
- * @param Height
- * @desc Set to the height of the collider.
- * @type Number
- * @default 24
- *
- * @param Offset X
- * @desc Set to the x offset of the collider.
- * @type Number
- * @default 6
- *
- * @param Offset Y
- * @desc Set to the y offset of the collider.
- * @type Number
- * @default 24
- */
+/*~struct~Collider:
+* @param Type
+* @desc Set to box or circle
+* @type select
+* @option Box
+* @value box
+* @option Circle
+* @value circle
+* @default box
+*
+* @param Width
+* @desc Set to the width of the collider.
+* @type Number
+* @default 36
+*
+* @param Height
+* @desc Set to the height of the collider.
+* @type Number
+* @default 24
+*
+* @param Offset X
+* @desc Set to the x offset of the collider.
+* @type Number
+* @min -9999
+* @default 6
+*
+* @param Offset Y
+* @desc Set to the y offset of the collider.
+* @type Number
+* @min -9999
+* @default 24
+*/
+/*~struct~ColliderPreset:
+* @param ID
+* @desc The ID of this preset, needs to be unique!
+* @default
+*
+* @param Type
+* @desc Set to box or circle
+* @type select
+* @option Box
+* @value box
+* @option Circle
+* @value circle
+* @default box
+*
+* @param Width
+* @desc Set to the width of the collider.
+* @type Number
+* @default 36
+*
+* @param Height
+* @desc Set to the height of the collider.
+* @type Number
+* @default 24
+*
+* @param Offset X
+* @desc Set to the x offset of the collider.
+* @type Number
+* @default 6
+*
+* @param Offset Y
+* @desc Set to the y offset of the collider.
+* @type Number
+* @default 24
+*/
 //=============================================================================
 //=============================================================================
 // QMovement Static Class
@@ -657,13 +657,13 @@ function QMovement() {
   throw new Error('This is a static class');
 }
 
-(function() {
+(function () {
   var _PARAMS = QPlus.getParams('<QMovement>', {
     'Player Collider': {
-      "Type": "box", "Width": 36,"Height":24 ,"Offset X": 6,"Offset Y": 24
+      "Type": "box", "Width": 36, "Height": 24, "Offset X": 6, "Offset Y": 24
     },
     'Event Collider': {
-      "Type": "box", "Width": 36,"Height":24 ,"Offset X": 6,"Offset Y": 24
+      "Type": "box", "Width": 36, "Height": 24, "Offset X": 6, "Offset Y": 24
     },
     'Presets': []
   });
@@ -683,7 +683,7 @@ function QMovement() {
   QMovement.playerCollider = convertColliderStruct(_PARAMS['Player Collider']);
   QMovement.eventCollider = convertColliderStruct(_PARAMS['Event Collider']);
   QMovement.presets = {};
-  _PARAMS['Presets'].forEach(function(preset) {
+  _PARAMS['Presets'].forEach(function (preset) {
     QMovement.presets[preset.ID] = convertColliderStruct(preset);
   });
   QMovement.showColliders = _PARAMS['Show Colliders'];
@@ -754,10 +754,10 @@ function Polygon_Collider() {
   this.initialize.apply(this, arguments);
 }
 
-(function() {
+(function () {
   Polygon_Collider._counter = 0;
 
-  Polygon_Collider.prototype.initialize = function(points) {
+  Polygon_Collider.prototype.initialize = function (points) {
     var args = [];
     for (var i = 1; i < arguments.length; i++) {
       args.push(arguments[i]);
@@ -766,7 +766,7 @@ function Polygon_Collider() {
     this.makeVertices(points);
   };
 
-  Polygon_Collider.prototype.initMembers = function(x, y) {
+  Polygon_Collider.prototype.initMembers = function (x, y) {
     x = x !== undefined ? x : 0;
     y = y !== undefined ? y : 0;
     this._position = new Point(x, y);
@@ -827,19 +827,19 @@ function Polygon_Collider() {
     }
   });
 
-  Polygon_Collider.prototype.isPolygon = function() {
+  Polygon_Collider.prototype.isPolygon = function () {
     return true;
   };
 
-  Polygon_Collider.prototype.isBox = function() {
+  Polygon_Collider.prototype.isBox = function () {
     return true;
   };
 
-  Polygon_Collider.prototype.isCircle = function() {
+  Polygon_Collider.prototype.isCircle = function () {
     return false;
   };
 
-  Polygon_Collider.prototype.makeVertices = function(points) {
+  Polygon_Collider.prototype.makeVertices = function (points) {
     this._vertices = [];
     this._baseVertices = [];
     this._edges = [];
@@ -893,8 +893,8 @@ function Polygon_Collider() {
     this.center = new Point(x1 + this.width / 2, y1 + this.height / 2);
   };
 
-  Polygon_Collider.prototype.makeVectors = function() {
-    this._vectors = this._baseVertices.map((function(vertex) {
+  Polygon_Collider.prototype.makeVectors = function () {
+    this._vectors = this._baseVertices.map((function (vertex) {
       var dx = vertex.x - this._pivot.x;
       var dy = vertex.y - this._pivot.y;
       var radian = Math.atan2(dy, dx);
@@ -904,7 +904,7 @@ function Polygon_Collider() {
     }).bind(this));
   };
 
-  Polygon_Collider.prototype.setBounds = function() {
+  Polygon_Collider.prototype.setBounds = function () {
     this._xMin = null;
     this._xMax = null;
     this._yMin = null;
@@ -932,7 +932,7 @@ function Polygon_Collider() {
     this.center = new Point(x1 + this.width / 2, y1 + this.height / 2);
   };
 
-  Polygon_Collider.prototype.refreshVertices = function() {
+  Polygon_Collider.prototype.refreshVertices = function () {
     this._edges = [];
     var i, j;
     for (i = 0, j = this._vertices.length; i < j; i++) {
@@ -957,7 +957,7 @@ function Polygon_Collider() {
     this.setBounds();
   };
 
-  Polygon_Collider.prototype.sectorEdge = function() {
+  Polygon_Collider.prototype.sectorEdge = function () {
     var x1 = this._xMin + this.x + this.ox;
     var x2 = this._xMax + this.x + this.ox - 1;
     var y1 = this._yMin + this.y + this.oy;
@@ -972,7 +972,7 @@ function Polygon_Collider() {
     }
   };
 
-  Polygon_Collider.prototype.gridEdge = function() {
+  Polygon_Collider.prototype.gridEdge = function () {
     var x1 = this._xMin + this.x + this.ox;
     var x2 = this._xMax + this.x + this.ox - 1;
     var y1 = this._yMin + this.y + this.oy;
@@ -987,7 +987,7 @@ function Polygon_Collider() {
     }
   };
 
-  Polygon_Collider.prototype.edge = function() {
+  Polygon_Collider.prototype.edge = function () {
     var x1 = this._xMin + this.x + this.ox;
     var x2 = this._xMax + this.x + this.ox - 1;
     var y1 = this._yMin + this.y + this.oy;
@@ -998,26 +998,26 @@ function Polygon_Collider() {
     }
   };
 
-  Polygon_Collider.prototype.setPivot = function(x, y) {
+  Polygon_Collider.prototype.setPivot = function (x, y) {
     this._pivot.x = x;
     this._pivot.y = y;
     this.makeVectors();
     this.rotate(0); // Resets base vertices
   };
 
-  Polygon_Collider.prototype.centerPivot = function() {
+  Polygon_Collider.prototype.centerPivot = function () {
     this._pivot.x = this.width / 2;
     this._pivot.y = this.height / 2;
     this.makeVectors();
     this.rotate(0); // Resets base vertices
   };
 
-  Polygon_Collider.prototype.setRadian = function(radian) {
+  Polygon_Collider.prototype.setRadian = function (radian) {
     radian = radian !== undefined ? radian : 0;
     this.rotate(radian - this._radian);
   };
 
-  Polygon_Collider.prototype.rotate = function(radian) {
+  Polygon_Collider.prototype.rotate = function (radian) {
     this._radian += radian;
     for (var i = 0; i < this._vectors.length; i++) {
       var vector = this._vectors[i];
@@ -1030,13 +1030,13 @@ function Polygon_Collider() {
     this.refreshVertices();
   };
 
-  Polygon_Collider.prototype.setScale = function(zX, zY) {
+  Polygon_Collider.prototype.setScale = function (zX, zY) {
     zX = zX !== undefined ? zX : 1;
     zY = zY !== undefined ? zY : 1;
     this.scale(zX / this._scale.x, zY / this._scale.y);
   };
 
-  Polygon_Collider.prototype.scale = function(zX, zY) {
+  Polygon_Collider.prototype.scale = function (zX, zY) {
     this._scale.x *= zX;
     this._scale.y *= zY;
     for (var i = 0; i < this._vectors.length; i++) {
@@ -1054,7 +1054,7 @@ function Polygon_Collider() {
     this.refreshVertices();
   };
 
-  Polygon_Collider.prototype.moveTo = function(x, y) {
+  Polygon_Collider.prototype.moveTo = function (x, y) {
     if (x !== this.x || y !== this.y) {
       this.x = x;
       this.y = y;
@@ -1062,7 +1062,7 @@ function Polygon_Collider() {
     }
   };
 
-  Polygon_Collider.prototype.intersects = function(other) {
+  Polygon_Collider.prototype.intersects = function (other) {
     if (this.height === 0 || this.width === 0) return false;
     if (other.height === 0 || other.width === 0) return false;
     if (!other.isPolygon()) {
@@ -1092,7 +1092,7 @@ function Polygon_Collider() {
     return false;
   };
 
-  Polygon_Collider.prototype.inside = function(other) {
+  Polygon_Collider.prototype.inside = function (other) {
     if (this.height === 0 || this.width === 0) return false;
     if (other.height === 0 || other.width === 0) return false;
     var i, j, x, y;
@@ -1106,7 +1106,7 @@ function Polygon_Collider() {
     return true;
   };
 
-  Polygon_Collider.prototype.containsPoint = function(x, y) {
+  Polygon_Collider.prototype.containsPoint = function (x, y) {
     var i;
     var j = this._vertices.length - 1;
     var odd = false;
@@ -1122,7 +1122,7 @@ function Polygon_Collider() {
     return odd;
   };
 
-  Polygon_Collider.prototype.lineIntersection = function(lineA, lineB) {
+  Polygon_Collider.prototype.lineIntersection = function (lineA, lineB) {
     var a1 = lineA.y1 - lineA.y2;
     var b1 = lineA.x2 - lineA.x1;
     var a2 = lineB.y1 - lineB.y2;
@@ -1143,7 +1143,7 @@ function Polygon_Collider() {
 
   // TODO Optimize this
   // Compaire other methods, example atan2 - atan2 or a dot product
-  Polygon_Collider.prototype.bestPairFrom = function(point) {
+  Polygon_Collider.prototype.bestPairFrom = function (point) {
     var vertices = this._vertices;
     var radians = [];
     var points = [];
@@ -1171,7 +1171,7 @@ function Polygon_Collider() {
   };
 
   // returns a new polygon
-  Polygon_Collider.prototype.stretchedPoly = function(radian, dist) {
+  Polygon_Collider.prototype.stretchedPoly = function (radian, dist) {
     var dist2 = dist + Math.max(this.width, this.height);
     var xComponent = Math.cos(radian) * dist;
     var yComponent = Math.sin(radian) * dist;
@@ -1205,11 +1205,11 @@ function Box_Collider() {
   this.initialize.apply(this, arguments);
 }
 
-(function() {
+(function () {
   Box_Collider.prototype = Object.create(Polygon_Collider.prototype);
   Box_Collider.prototype.constructor = Box_Collider;
 
-  Box_Collider.prototype.initialize = function(width, height, ox, oy, options) {
+  Box_Collider.prototype.initialize = function (width, height, ox, oy, options) {
     var points = [
       new Point(0, 0),
       new Point(width, 0),
@@ -1219,7 +1219,7 @@ function Box_Collider() {
     Polygon_Collider.prototype.initialize.call(this, points, width, height, ox, oy, options);
   };
 
-  Box_Collider.prototype.initMembers = function(width, height, ox, oy, options) {
+  Box_Collider.prototype.initMembers = function (width, height, ox, oy, options) {
     Polygon_Collider.prototype.initMembers.call(this, 0, 0);
     ox = ox === undefined ? 0 : ox;
     oy = oy === undefined ? 0 : oy;
@@ -1231,15 +1231,15 @@ function Box_Collider() {
     this._position = options.position || this._position;
   };
 
-  Box_Collider.prototype.isPolygon = function() {
+  Box_Collider.prototype.isPolygon = function () {
     return false;
   };
 
-  Box_Collider.prototype.isBox = function() {
+  Box_Collider.prototype.isBox = function () {
     return true;
   };
 
-  Box_Collider.prototype.containsPoint = function(x, y) {
+  Box_Collider.prototype.containsPoint = function (x, y) {
     if (this._radian === 0) {
       var xMin = this._xMin + this.x + this.ox;
       var xMax = this._xMax + this.x + this.ox;
@@ -1262,11 +1262,11 @@ function Circle_Collider() {
   this.initialize.apply(this, arguments);
 }
 
-(function() {
+(function () {
   Circle_Collider.prototype = Object.create(Polygon_Collider.prototype);
   Circle_Collider.prototype.constructor = Circle_Collider;
 
-  Circle_Collider.prototype.initialize = function(width, height, ox, oy, options) {
+  Circle_Collider.prototype.initialize = function (width, height, ox, oy, options) {
     this._radius = new Point(width / 2, height / 2);
     var points = [];
     for (var i = 7; i >= 0; i--) {
@@ -1292,21 +1292,21 @@ function Circle_Collider() {
     }
   });
 
-  Circle_Collider.prototype.isPolygon = function() {
+  Circle_Collider.prototype.isPolygon = function () {
     return false;
   };
 
-  Circle_Collider.prototype.isCircle = function() {
+  Circle_Collider.prototype.isCircle = function () {
     return true;
   };
 
-  Circle_Collider.prototype.scale = function(zX, zY) {
+  Circle_Collider.prototype.scale = function (zX, zY) {
     Polygon_Collider.prototype.scale.call(this, zX, zY);
     this._radius.x *= zX;
     this._radius.y *= zY;
   };
 
-  Circle_Collider.prototype.circlePosition = function(radian) {
+  Circle_Collider.prototype.circlePosition = function (radian) {
     var x = this.radiusX * Math.cos(radian);
     var y = this.radiusY * -Math.sin(radian);
     var dist = Math.sqrt(x * x + y * y);
@@ -1316,7 +1316,7 @@ function Circle_Collider() {
     return new Point(this.center.x + x, this.center.y + y);
   };
 
-  Circle_Collider.prototype.intersects = function(other) {
+  Circle_Collider.prototype.intersects = function (other) {
     if (this.height === 0 || this.width === 0) return false;
     if (other.height === 0 || other.width === 0) return false;
     if (this.containsPoint(other.center.x, other.center.y)) return true;
@@ -1357,7 +1357,7 @@ function ColliderManager() {
   throw new Error('This is a static class');
 }
 
-(function() {
+(function () {
   ColliderManager._colliders = [];
   ColliderManager._colliderGrid = [];
   ColliderManager._characterGrid = [];
@@ -1368,7 +1368,7 @@ function ColliderManager() {
   ColliderManager.containerDict = {};
   ColliderManager.visible = QMovement.showColliders;
 
-  ColliderManager.clear = function() {
+  ColliderManager.clear = function () {
     this._colliders = [];
     this._colliderGrid = [];
     this._characterGrid = [];
@@ -1376,7 +1376,7 @@ function ColliderManager() {
     this.containerDict = {};
   };
 
-  ColliderManager.refresh = function() {
+  ColliderManager.refresh = function () {
     this.clear();
     this._colliderGrid = new Array(this._mapWidth);
     for (var x = 0; x < this._colliderGrid.length; x++) {
@@ -1395,7 +1395,7 @@ function ColliderManager() {
     this._needsRefresh = false;
   };
 
-  ColliderManager.addCollider = function(collider, duration, ignoreGrid) {
+  ColliderManager.addCollider = function (collider, duration, ignoreGrid) {
     if (!$dataMap) return;
     var i = this._colliders.indexOf(collider);
     if (i === -1) {
@@ -1409,7 +1409,7 @@ function ColliderManager() {
     }
   };
 
-  ColliderManager.addCharacter = function(character, duration) {
+  ColliderManager.addCharacter = function (character, duration) {
     if (!$dataMap) return;
     var i = this._colliders.indexOf(character);
     if (i === -1) {
@@ -1421,7 +1421,7 @@ function ColliderManager() {
     this.updateGrid(character);
   };
 
-  ColliderManager.remove = function(collider) {
+  ColliderManager.remove = function (collider) {
     var i = this._colliders.indexOf(collider);
     if (i < 0) return;
     this.removeFromGrid(collider);
@@ -1429,12 +1429,12 @@ function ColliderManager() {
     this._colliders.splice(i, 1);
   };
 
-  ColliderManager.removeSprite = function(sprite) {
+  ColliderManager.removeSprite = function (sprite) {
     this.container.removeChild(sprite);
     delete this.containerDict[sprite._collider.id];
   };
 
-  ColliderManager.updateGrid = function(collider, prevGrid) {
+  ColliderManager.updateGrid = function (collider, prevGrid) {
     if (this._needsRefresh) return;
     var currGrid;
     var grid;
@@ -1470,7 +1470,7 @@ function ColliderManager() {
     }
   };
 
-  ColliderManager.removeFromGrid = function(collider) {
+  ColliderManager.removeFromGrid = function (collider) {
     var grid;
     var edge;
     if (collider._colliders) { // Is a character obj
@@ -1491,7 +1491,7 @@ function ColliderManager() {
     }
   };
 
-  ColliderManager.getCharactersNear = function(collider, only) {
+  ColliderManager.getCharactersNear = function (collider, only) {
     var grid = collider.sectorEdge();
     var near = [];
     var checked = {};
@@ -1523,7 +1523,7 @@ function ColliderManager() {
     return near;
   };
 
-  ColliderManager.getCollidersNear = function(collider, only, debug) {
+  ColliderManager.getCollidersNear = function (collider, only, debug) {
     var grid = collider.sectorEdge();
     var near = [];
     var checked = {};
@@ -1559,7 +1559,7 @@ function ColliderManager() {
     return near;
   };
 
-  ColliderManager.getAllNear = function(collider, only) {
+  ColliderManager.getAllNear = function (collider, only) {
     var grid = collider.sectorEdge();
     var near = [];
     var checked = {};
@@ -1602,15 +1602,15 @@ function ColliderManager() {
     return near;
   };
 
-  ColliderManager.sectorCols = function() {
+  ColliderManager.sectorCols = function () {
     return Math.floor(this._mapWidth * QMovement.tileSize / this._sectorSize);
   };
 
-  ColliderManager.sectorRows = function() {
+  ColliderManager.sectorRows = function () {
     return Math.floor(this._mapHeight * QMovement.tileSize / this._sectorSize);
   };
 
-  ColliderManager.draw = function(collider, duration) {
+  ColliderManager.draw = function (collider, duration) {
     if ($gameTemp.isPlaytest()) {
       if (this.containerDict[collider.id]) {
         this.containerDict[collider.id]._collider = collider;
@@ -1626,7 +1626,7 @@ function ColliderManager() {
     }
   };
 
-  ColliderManager.update = function() {
+  ColliderManager.update = function () {
     if (this.visible) {
       this.show();
     } else {
@@ -1634,19 +1634,19 @@ function ColliderManager() {
     }
   };
 
-  ColliderManager.toggle = function() {
+  ColliderManager.toggle = function () {
     this.visible = !this.visible;
   };
 
-  ColliderManager.show = function() {
+  ColliderManager.show = function () {
     this.container.visible = true;
   };
 
-  ColliderManager.hide = function() {
+  ColliderManager.hide = function () {
     this.container.visible = false;
   };
 
-  ColliderManager.convertToCollider = function(arr) {
+  ColliderManager.convertToCollider = function (arr) {
     var type = arr[0].toLowerCase();
     if (type === 'preset') {
       var arr = QMovement.presets[arr[1]];
@@ -1675,7 +1675,7 @@ function ColliderManager() {
     return collider;
   };
 
-  ColliderManager.rayCast = function(origin, angle, dist, filter) {
+  ColliderManager.rayCast = function (origin, angle, dist, filter) {
     // Incomplete
     // need to finish the Polygon_Collider.prototype.lineIntersection function
     var ray = new Box_Collider(dist, 1, 0, 0, {
@@ -1690,16 +1690,16 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Interpreter
 
-(function() {
+(function () {
   var Alias_Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
-  Game_Interpreter.prototype.pluginCommand = function(command, args) {
+  Game_Interpreter.prototype.pluginCommand = function (command, args) {
     if (command.toLowerCase() === 'qmovement') {
       return this.qMovementCommand(QPlus.makeArgs(args));
     }
     Alias_Game_Interpreter_pluginCommand.call(this, command, args);
   };
 
-  Game_Interpreter.prototype.qMovementCommand = function(args) {
+  Game_Interpreter.prototype.qMovementCommand = function (args) {
     var cmd = args.shift().toLowerCase();
     if (cmd === 'changecollider') {
       var chara = QPlus.getCharacter(args[0]);
@@ -1750,15 +1750,15 @@ function ColliderManager() {
 //
 // The game object class for temporary data that is not included in save data.
 
-(function() {
+(function () {
   var Alias_Game_Temp_initialize = Game_Temp.prototype.initialize;
-  Game_Temp.prototype.initialize = function() {
+  Game_Temp.prototype.initialize = function () {
     Alias_Game_Temp_initialize.call(this);
     this._destinationPX = null;
     this._destinationPY = null;
   };
 
-  Game_Temp.prototype.setPixelDestination = function(x, y) {
+  Game_Temp.prototype.setPixelDestination = function (x, y) {
     this._destinationPX = x;
     this._destinationPY = y;
     var x1 = $gameMap.roundX(Math.floor(x / $gameMap.tileWidth()));
@@ -1767,18 +1767,18 @@ function ColliderManager() {
   };
 
   var Alias_Game_Temp_clearDestination = Game_Temp.prototype.clearDestination;
-  Game_Temp.prototype.clearDestination = function() {
+  Game_Temp.prototype.clearDestination = function () {
     if ($gamePlayer._movingWithMouse) return;
     Alias_Game_Temp_clearDestination.call(this);
     this._destinationPX = null;
     this._destinationPY = null;
   };
 
-  Game_Temp.prototype.destinationPX = function() {
+  Game_Temp.prototype.destinationPX = function () {
     return this._destinationPX;
   };
 
-  Game_Temp.prototype.destinationPY = function() {
+  Game_Temp.prototype.destinationPY = function () {
     return this._destinationPY;
   };
 })();
@@ -1786,16 +1786,16 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_System
 
-(function() {
+(function () {
   var Alias_Game_System_onBeforeSave = Game_System.prototype.onBeforeSave;
-  Game_System.prototype.onBeforeSave = function() {
+  Game_System.prototype.onBeforeSave = function () {
     Alias_Game_System_onBeforeSave.call(this);
     $gameMap.clearColliders();
     ColliderManager._needsRefresh = true;
   };
 
   var Alias_Game_System_onAfterLoad = Game_System.prototype.onAfterLoad;
-  Game_System.prototype.onAfterLoad = function() {
+  Game_System.prototype.onAfterLoad = function () {
     Alias_Game_System_onAfterLoad.call(this);
     ColliderManager._needsRefresh = true;
   };
@@ -1804,9 +1804,9 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Map
 
-(function() {
+(function () {
   var Alias_Game_Map_setup = Game_Map.prototype.setup;
-  Game_Map.prototype.setup = function(mapId) {
+  Game_Map.prototype.setup = function (mapId) {
     if ($dataMap) {
       ColliderManager._mapWidth = this.width();
       ColliderManager._mapHeight = this.height();
@@ -1816,15 +1816,15 @@ function ColliderManager() {
     this.reloadColliders();
   };
 
-  Game_Map.prototype.tileWidth = function() {
+  Game_Map.prototype.tileWidth = function () {
     return QMovement.tileSize;
   };
 
-  Game_Map.prototype.tileHeight = function() {
+  Game_Map.prototype.tileHeight = function () {
     return QMovement.tileSize;
   };
 
-  Game_Map.prototype.flagAt = function(x, y) {
+  Game_Map.prototype.flagAt = function (x, y) {
     var x = x || $gamePlayer.x;
     var y = y || $gamePlayer.y;
     var flags = this.tilesetFlags();
@@ -1839,21 +1839,21 @@ function ColliderManager() {
     }
   };
 
-  Game_Map.prototype.gridSize = function() {
+  Game_Map.prototype.gridSize = function () {
     if ($dataMap && $dataMap.meta.grid !== undefined) {
       return Number($dataMap.meta.grid) || QMovement.grid;
     }
     return QMovement.grid;
   };
 
-  Game_Map.prototype.offGrid = function() {
+  Game_Map.prototype.offGrid = function () {
     if ($dataMap && $dataMap.meta.offGrid !== undefined) {
       return $dataMap.meta.offGrid === 'true';
     }
     return QMovement.offGrid;
   };
 
-  Game_Map.prototype.midPass = function() {
+  Game_Map.prototype.midPass = function () {
     if ($dataMap && $dataMap.meta.midPass !== undefined) {
       return $dataMap.meta.midPass === 'true';
     }
@@ -1861,7 +1861,7 @@ function ColliderManager() {
   };
 
   var Alias_Game_Map_refreshIfNeeded = Game_Map.prototype.refreshIfNeeded;
-  Game_Map.prototype.refreshIfNeeded = function() {
+  Game_Map.prototype.refreshIfNeeded = function () {
     Alias_Game_Map_refreshIfNeeded.call(this);
     if (ColliderManager._needsRefresh) {
       ColliderManager._mapWidth = this.width();
@@ -1874,11 +1874,15 @@ function ColliderManager() {
   //---------------------iVillain Edit-----------------------
   Game_Map.prototype.ColliderRefresh = function () {
     ColliderManager.refresh();
+    try {
     this.setupCollisionMap();
+    } catch (e){
+
+    }
   };
   //---------------------------------------------------------
 
-  Game_Map.prototype.reloadColliders = function() {
+  Game_Map.prototype.reloadColliders = function () {
     this.reloadTileMap();
     var events = this.events();
     var i, j;
@@ -1896,7 +1900,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Map.prototype.clearColliders = function() {
+  Game_Map.prototype.clearColliders = function () {
     var events = this.events();
     var i, j;
     for (i = 0, j = events.length; i < j; i++) {
@@ -1913,13 +1917,13 @@ function ColliderManager() {
     }
   };
 
-  Game_Map.prototype.reloadTileMap = function() {
+  Game_Map.prototype.reloadTileMap = function () {
     this.setupMapColliders();
     // collider map is also loaded here
     // collision map is also loaded here
   };
 
-  Game_Map.prototype.setupMapColliders = function() {
+  Game_Map.prototype.setupMapColliders = function () {
     this._tileCounter = 0;
     for (var x = 0; x < this.width(); x++) {
       for (var y = 0; y < this.height(); y++) {
@@ -1943,7 +1947,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Map.prototype.getMapCollider = function(x, y, flag) {
+  Game_Map.prototype.getMapCollider = function (x, y, flag) {
     var realFlag = flag;
     if (flag >> 12 > 0) {
       flag = flag.toString(2);
@@ -1978,7 +1982,7 @@ function ColliderManager() {
     return boxData;
   };
 
-  Game_Map.prototype.makeTileCollider = function(x, y, flag, boxData, index) {
+  Game_Map.prototype.makeTileCollider = function (x, y, flag, boxData, index) {
     // boxData is array [width, height, ox, oy, note, type]
     var x1 = x * this.tileWidth();
     var y1 = y * this.tileHeight();
@@ -2025,39 +2029,39 @@ function ColliderManager() {
     return newBox;
   };
 
-  Game_Map.prototype.adjustPX = function(x) {
+  Game_Map.prototype.adjustPX = function (x) {
     return this.adjustX(x / QMovement.tileSize) * QMovement.tileSize;
   };
 
-  Game_Map.prototype.adjustPY = function(y) {
+  Game_Map.prototype.adjustPY = function (y) {
     return this.adjustY(y / QMovement.tileSize) * QMovement.tileSize;
   };
 
-  Game_Map.prototype.roundPX = function(x) {
+  Game_Map.prototype.roundPX = function (x) {
     return this.isLoopHorizontal() ? x.mod(this.width() * QMovement.tileSize) : x;
   };
 
-  Game_Map.prototype.roundPY = function(y) {
+  Game_Map.prototype.roundPY = function (y) {
     return this.isLoopVertical() ? y.mod(this.height() * QMovement.tileSize) : y;
   };
 
-  Game_Map.prototype.pxWithDirection = function(x, d, dist) {
+  Game_Map.prototype.pxWithDirection = function (x, d, dist) {
     return x + (d === 6 ? dist : d === 4 ? -dist : 0);
   };
 
-  Game_Map.prototype.pyWithDirection = function(y, d, dist) {
+  Game_Map.prototype.pyWithDirection = function (y, d, dist) {
     return y + (d === 2 ? dist : d === 8 ? -dist : 0);
   };
 
-  Game_Map.prototype.roundPXWithDirection = function(x, d, dist) {
+  Game_Map.prototype.roundPXWithDirection = function (x, d, dist) {
     return this.roundPX(x + (d === 6 ? dist : d === 4 ? -dist : 0));
   };
 
-  Game_Map.prototype.roundPYWithDirection = function(y, d, dist) {
+  Game_Map.prototype.roundPYWithDirection = function (y, d, dist) {
     return this.roundPY(y + (d === 2 ? dist : d === 8 ? -dist : 0));
   };
 
-  Game_Map.prototype.deltaPX = function(x1, x2) {
+  Game_Map.prototype.deltaPX = function (x1, x2) {
     var result = x1 - x2;
     if (this.isLoopHorizontal() && Math.abs(result) > (this.width() * QMovement.tileSize) / 2) {
       if (result < 0) {
@@ -2069,7 +2073,7 @@ function ColliderManager() {
     return result;
   };
 
-  Game_Map.prototype.deltaPY = function(y1, y2) {
+  Game_Map.prototype.deltaPY = function (y1, y2) {
     var result = y1 - y2;
     if (this.isLoopVertical() && Math.abs(result) > (this.height() * QMovement.tileSize) / 2) {
       if (result < 0) {
@@ -2081,13 +2085,13 @@ function ColliderManager() {
     return result;
   };
 
-  Game_Map.prototype.canvasToMapPX = function(x) {
+  Game_Map.prototype.canvasToMapPX = function (x) {
     var tileWidth = this.tileWidth();
     var originX = this.displayX() * tileWidth;
     return this.roundPX(originX + x);
   };
 
-  Game_Map.prototype.canvasToMapPY = function(y) {
+  Game_Map.prototype.canvasToMapPY = function (y) {
     var tileHeight = this.tileHeight();
     var originY = this.displayY() * tileHeight;
     return this.roundPY(originY + y);
@@ -2097,12 +2101,12 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Party
 
-(function() {
-  Game_Party.prototype.steps = function() {
+(function () {
+  Game_Party.prototype.steps = function () {
     return Math.floor(this._steps);
   };
 
-  Game_Party.prototype.increaseSteps = function() {
+  Game_Party.prototype.increaseSteps = function () {
     this._steps += $gamePlayer.moveTiles() / QMovement.tileSize;
   };
 })();
@@ -2110,20 +2114,20 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_CharacterBase
 
-(function() {
+(function () {
   Object.defineProperties(Game_CharacterBase.prototype, {
     px: {
-      get: function() { return this._px; },
+      get: function () { return this._px; },
       configurable: true
     },
     py: {
-      get: function() { return this._py; },
+      get: function () { return this._py; },
       configurable: true
     }
   });
 
   var Alias_Game_CharacterBase_initMembers = Game_CharacterBase.prototype.initMembers;
-  Game_CharacterBase.prototype.initMembers = function() {
+  Game_CharacterBase.prototype.initMembers = function () {
     Alias_Game_CharacterBase_initMembers.call(this);
     this._px = 0;
     this._py = 0;
@@ -2148,7 +2152,7 @@ function ColliderManager() {
     this._overrideColliders = {};
   };
 
-  Game_CharacterBase.prototype.direction8 = function(horz, vert) {
+  Game_CharacterBase.prototype.direction8 = function (horz, vert) {
     if (horz === 4 && vert === 8) return 7;
     if (horz === 4 && vert === 2) return 1;
     if (horz === 6 && vert === 8) return 9;
@@ -2156,28 +2160,28 @@ function ColliderManager() {
     return 5;
   };
 
-  Game_CharacterBase.prototype.isMoving = function() {
+  Game_CharacterBase.prototype.isMoving = function () {
     return this._isMoving;
   };
 
-  Game_CharacterBase.prototype.startedMoving = function() {
+  Game_CharacterBase.prototype.startedMoving = function () {
     return this._realPX !== this._px || this._realPY !== this._py;
   };
 
-  Game_CharacterBase.prototype.isDiagonal = function() {
+  Game_CharacterBase.prototype.isDiagonal = function () {
     return this._diagonal;
   };
 
-  Game_CharacterBase.prototype.isArcing = function() {
+  Game_CharacterBase.prototype.isArcing = function () {
     return this._currentRad !== this._targetRad;
   };
 
-  Game_CharacterBase.prototype.setPixelPosition = function(x, y) {
+  Game_CharacterBase.prototype.setPixelPosition = function (x, y) {
     this.setPosition(x / QMovement.tileSize, y / QMovement.tileSize);
   };
 
   var Alias_Game_CharacterBase_setPosition = Game_CharacterBase.prototype.setPosition;
-  Game_CharacterBase.prototype.setPosition = function(x, y) {
+  Game_CharacterBase.prototype.setPosition = function (x, y) {
     Alias_Game_CharacterBase_setPosition.call(this, x, y);
     this._px = this._realPX = x * QMovement.tileSize;
     this._py = this._realPY = y * QMovement.tileSize;
@@ -2186,7 +2190,7 @@ function ColliderManager() {
   };
 
   var Alias_Game_CharacterBase_copyPosition = Game_CharacterBase.prototype.copyPosition;
-  Game_CharacterBase.prototype.copyPosition = function(character) {
+  Game_CharacterBase.prototype.copyPosition = function (character) {
     Alias_Game_CharacterBase_copyPosition.call(this, character);
     this._px = character._px;
     this._py = character._py;
@@ -2195,9 +2199,12 @@ function ColliderManager() {
     if (!this._colliders) this.collider();
     this.moveColliders();
   };
-
+  Game_CharacterBase.prototype.changeCollider = function (type, settings) {
+    this._overrideColliders[type] = settings;
+    this.reloadColliders();
+  };
   var Alias_Game_CharacterBase_setDirection = Game_CharacterBase.prototype.setDirection;
-  Game_CharacterBase.prototype.setDirection = function(d) {
+  Game_CharacterBase.prototype.setDirection = function (d) {
     //iVillain edit ---------------------------------------------
     this.lastDirection = d;
     //---------------------------------------------------------
@@ -2222,29 +2229,29 @@ function ColliderManager() {
     Alias_Game_CharacterBase_setDirection.call(this, d);
   };
 
-  Game_CharacterBase.prototype.setRadian = function(radian) {
+  Game_CharacterBase.prototype.setRadian = function (radian) {
     radian = QPlus.adjustRadian(radian);
     this.setDirection(this.radianToDirection(radian, QMovement.diagonal));
     this._radian = radian;
   };
 
-  Game_CharacterBase.prototype.moveTiles = function() {
+  Game_CharacterBase.prototype.moveTiles = function () {
     if ($gameMap.gridSize() < this.frameSpeed()) {
       return $gameMap.offGrid() ? this.frameSpeed() : $gameMap.gridSize();
     }
     return $gameMap.gridSize();
   };
 
-  Game_CharacterBase.prototype.frameSpeed = function(multi) {
+  Game_CharacterBase.prototype.frameSpeed = function (multi) {
     var multi = multi === undefined ? 1 : Math.abs(multi);
     return this.distancePerFrame() * QMovement.tileSize * multi;
   };
 
-  Game_CharacterBase.prototype.angularSpeed = function() {
+  Game_CharacterBase.prototype.angularSpeed = function () {
     return this._angularSpeed || this.frameSpeed() / this._radiusL;
   };
 
-  Game_CharacterBase.prototype.forwardV = function() {
+  Game_CharacterBase.prototype.forwardV = function () {
     return {
       x: Math.cos(this._forwardRadian) * this.frameSpeed(),
       y: Math.sin(this._forwardRadian) * this.frameSpeed()
@@ -2252,16 +2259,16 @@ function ColliderManager() {
   };
 
   var Alias_Game_CharacterBase_canMove = Game_CharacterBase.prototype.canMove;
-  Game_CharacterBase.prototype.canMove = function() {
+  Game_CharacterBase.prototype.canMove = function () {
     if (this._locked) return false;
     return Alias_Game_CharacterBase_canMove.call(this);
   };
 
-  Game_CharacterBase.prototype.canPass = function(x, y, dir) {
+  Game_CharacterBase.prototype.canPass = function (x, y, dir) {
     return this.canPixelPass(x * QMovement.tileSize, y * QMovement.tileSize, dir);
   };
 
-  Game_CharacterBase.prototype.canPixelPass = function(x, y, dir, dist, type) {
+  Game_CharacterBase.prototype.canPixelPass = function (x, y, dir, dist, type) {
     dist = dist || this.moveTiles();
     type = type || 'collision';
     var x1 = $gameMap.roundPXWithDirection(x, dir, dist);
@@ -2276,11 +2283,96 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.canPassDiagonally = function(x, y, horz, vert) {
+  //iVillain edit---------------------------------------------------------
+  Game_CharacterBase.prototype.jumpX = function (xPlus, yPlus, distance) {
+    if (distance > 0) {
+      xPlus = 0;
+      yPlus = 0;
+      switch (this.lastDirection) {
+        case 1:
+          yPlus = + distance;
+          xPlus = - distance;
+          break;
+        case 2:
+          yPlus = distance;
+          break;
+        case 3:
+          yPlus = + distance;
+          xPlus = + distance;
+          break;
+        case 4:
+          xPlus = - distance;
+          break;
+        case 6:
+          xPlus = distance;
+          break;
+        case 7:
+          yPlus = - distance;
+          xPlus = - distance;
+          break;
+        case 8:
+          yPlus = - distance;
+          break;
+        case 9:
+          yPlus = - distance;
+          xPlus = + distance;
+          break;
+      };
+      //xPlus *= 48;
+      //yPlus *= 48; 
+      /*for (let i = 0, xTest = 0, yTest = 0, dis = 0; i < distance; i++){
+        if (xPlus < 0){xTest = this._px + xPlus - i} else {
+          xTest = this._px + xPlus + i
+        }
+        if (yPlus < 0){yTest = this._py + yPlus - i} else {
+          yTest = this._py + yPlus + i
+        }
+        //dis = i * 48;
+        //xTest = Math.round(xTest);
+        //yTest = Math.round(yTest);
+        if (this.canPixelPass(xTest, yTest, this.lastDirection)) {
+          console.log(xTest, yTest, `success`)
+        }
+        else {
+          console.log(xTest, yTest, `fail`)
+          return;
+        }
+      }*/
+      /*let xTest = Math.round(this._x += xPlus);
+      let yTest = Math.round(this._y += yPlus);
+      if (this.canPass(xTest, yTest, this.lastDirection)) {
+        console.log(`success`)
+      }
+      else {
+        console.log(`fail`)
+        return;
+      }*/
+    /*} else {
+      if (this.canPass(Math.round(this._x += xPlus), Math.round(this._y += yPlus), this.lastDirection)) {
+        console.log(`success`)
+      }
+      else {
+        console.log(`fail`)
+        return;
+      }
+    }*/
+  }
+    this.setDirection(this.lastDirection);
+    this._x += xPlus;
+    this._y += yPlus;
+    const jumpDis = Math.round(Math.sqrt(xPlus * xPlus + yPlus * yPlus));
+    this._jumpPeak = 13 + jumpDis - this._moveSpeed;
+    this._jumpCount = this._jumpPeak * 2;
+    this.resetStopCount();
+    this.straighten();
+  };
+  //------------------------------------------------------------
+
+  Game_CharacterBase.prototype.canPassDiagonally = function (x, y, horz, vert) {
     return this.canPixelPassDiagonally(x * QMovement.tileSize, y * QMovement.tileSize, horz, vert);
   };
 
-  Game_CharacterBase.prototype.canPixelPassDiagonally = function(x, y, horz, vert, dist, type) {
+  Game_CharacterBase.prototype.canPixelPassDiagonally = function (x, y, horz, vert, dist, type) {
     dist = dist || this.moveTiles();
     type = type || 'collision';
     var x1 = $gameMap.roundPXWithDirection(x, horz, dist);
@@ -2299,7 +2391,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.collisionCheck = function(x, y, dir, dist, type) {
+  Game_CharacterBase.prototype.collisionCheck = function (x, y, dir, dist, type) {
     this.collider(type).moveTo(x, y);
     if (!this.valid(type)) return false;
     if (this.isThrough() || this.isDebugThrough()) return true;
@@ -2311,7 +2403,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.middlePass = function(x, y, dir, dist, type) {
+  Game_CharacterBase.prototype.middlePass = function (x, y, dir, dist, type) {
     var dist = dist / 2 || this.moveTiles() / 2;
     var x2 = $gameMap.roundPXWithDirection(x, this.reverseDir(dir), dist);
     var y2 = $gameMap.roundPYWithDirection(y, this.reverseDir(dir), dist);
@@ -2322,17 +2414,17 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.collidesWithAnyTile = function(type) {
+  Game_CharacterBase.prototype.collidesWithAnyTile = function (type) {
     var collider = this.collider(type);
     var collided = false;
-    ColliderManager.getCollidersNear(collider, (function(collider) {
+    ColliderManager.getCollidersNear(collider, (function (collider) {
       collided = this.collidedWithTile(type, collider);
       if (collided) return 'break';
     }).bind(this));
     return collided;
   };
 
-  Game_CharacterBase.prototype.collidedWithTile = function(type, collider) {
+  Game_CharacterBase.prototype.collidedWithTile = function (type, collider) {
     if (collider.color && this.passableColors().contains(collider.color)) {
       return false;
     }
@@ -2342,33 +2434,34 @@ function ColliderManager() {
     return collider.intersects(this.collider(type));
   };
 
-  Game_CharacterBase.prototype.collidesWithAnyCharacter = function(type) {
+  Game_CharacterBase.prototype.collidesWithAnyCharacter = function (type) {
     var collider = this.collider(type);
     var collided = false;
-    ColliderManager.getCharactersNear(collider, function(chara) {
+    ColliderManager.getCharactersNear(collider, function (chara) {
       collided = this.collidedWithCharacter(type, chara);
       if (collided) return 'break';
     }.bind(this));
     return collided;
   };
 
-  Game_CharacterBase.prototype.collidedWithCharacter = function(type, chara) {
+  Game_CharacterBase.prototype.collidedWithCharacter = function (type, chara) {
     if (chara.isThrough() || chara === this || !chara.isNormalPriority()) {
       return false;
     }
     if (this.ignoreCharacters(type).contains(chara.charaId())) {
       return false;
     }
+    //ivillain
     return chara.collider('collision').intersects(this.collider(type));
   };
 
-  Game_CharacterBase.prototype.ignoreCharacters = function(type) {
+  Game_CharacterBase.prototype.ignoreCharacters = function (type) {
     // This function is to be aliased by plugins to return a list
     // of charaId's this character can pass through
     return [];
   };
 
-  Game_CharacterBase.prototype.valid = function(type) {
+  Game_CharacterBase.prototype.valid = function (type) {
     var edge = this.collider(type).gridEdge();
     var maxW = $gameMap.width();
     var maxH = $gameMap.height();
@@ -2381,7 +2474,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.passableColors = function() {
+  Game_CharacterBase.prototype.passableColors = function () {
     // #00000000 is a transparent return value in collisionmap addon
     var colors = ['#ffffff', '#00000000'];
     switch (this._passabilityLevel) {
@@ -2400,7 +2493,7 @@ function ColliderManager() {
     return colors;
   };
 
-  Game_CharacterBase.prototype.canPassToFrom = function(xf, yf, xi, yi, type) {
+  Game_CharacterBase.prototype.canPassToFrom = function (xf, yf, xi, yi, type) {
     xi = xi === undefined ? this._px : xi;
     yi = yi === undefined ? this._py : yi;
     type = type || 'collision';
@@ -2424,7 +2517,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_CharacterBase.prototype.checkEventTriggerTouchFront = function(d) {
+  Game_CharacterBase.prototype.checkEventTriggerTouchFront = function (d) {
     var horz = vert = d;
     if ([1, 3, 7, 9].contains(d)) {
       horz = (d === 1 || d === 7) ? 4 : 6;
@@ -2435,11 +2528,11 @@ function ColliderManager() {
     this.checkEventTriggerTouch(x2, y2);
   };
 
-  Game_CharacterBase.prototype.isOnLadder = function() {
+  Game_CharacterBase.prototype.isOnLadder = function () {
     if (!this.collider()) return false;
     var collider = this.collider('collision');
     var collided = false;
-    var colliders = ColliderManager.getCollidersNear(collider, function(tile) {
+    var colliders = ColliderManager.getCollidersNear(collider, function (tile) {
       if (!tile.isTile) return false;
       if (tile.isLadder && tile.intersects(collider)) {
         collided = true;
@@ -2450,11 +2543,11 @@ function ColliderManager() {
     return collided;
   };
 
-  Game_CharacterBase.prototype.isOnBush = function() {
+  Game_CharacterBase.prototype.isOnBush = function () {
     if (!this.collider()) return false;
     var collider = this.collider('collision');
     var collided = false;
-    var colliders = ColliderManager.getCollidersNear(collider, function(tile) {
+    var colliders = ColliderManager.getCollidersNear(collider, function (tile) {
       if (!tile.isTile) return false;
       if (tile.isBush && tile.intersects(collider)) {
         collided = true;
@@ -2465,20 +2558,20 @@ function ColliderManager() {
     return collided;
   };
 
-  Game_CharacterBase.prototype.freqThreshold = function() {
+  Game_CharacterBase.prototype.freqThreshold = function () {
     return QMovement.tileSize;
   };
 
-  Game_CharacterBase.prototype.terrainTag = function() {
+  Game_CharacterBase.prototype.terrainTag = function () {
     return $gameMap.terrainTag(Math.floor(this.cx(true)), Math.floor(this.cy(true)));
   };
 
-  Game_CharacterBase.prototype.regionId = function() {
+  Game_CharacterBase.prototype.regionId = function () {
     return $gameMap.regionId(Math.floor(this.cx(true)), Math.floor(this.cy(true)));
   };
 
   var Alias_Game_CharacterBase_update = Game_CharacterBase.prototype.update;
-  Game_CharacterBase.prototype.update = function() {
+  Game_CharacterBase.prototype.update = function () {
     var prevX = this._realPX;
     var prevY = this._realPY;
     if (this.startedMoving()) {
@@ -2502,7 +2595,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.updateMove = function() {
+  Game_CharacterBase.prototype.updateMove = function () {
     var xSpeed = 1;
     var ySpeed = 1;
     if (this._adjustFrameSpeed) {
@@ -2526,7 +2619,7 @@ function ColliderManager() {
     this._freqCount += this.frameSpeed();
   };
 
-  Game_CharacterBase.prototype.updateArc = function() {
+  Game_CharacterBase.prototype.updateArc = function () {
     if (this._currentRad < this._targetRad) {
       var newRad = Math.min(this._currentRad + this.angularSpeed(), this._targetRad);
     }
@@ -2545,14 +2638,14 @@ function ColliderManager() {
   };
 
   var Alias_Game_CharacterBase_updateJump = Game_CharacterBase.prototype.updateJump;
-  Game_CharacterBase.prototype.updateJump = function() {
+  Game_CharacterBase.prototype.updateJump = function () {
     Alias_Game_CharacterBase_updateJump.call(this);
     this._px = this._realPX = this._x * QMovement.tileSize;
     this._py = this._realPY = this._y * QMovement.tileSize;
     this.moveColliders(this._px, this._py);
   };
 
-  Game_CharacterBase.prototype.updateColliders = function() {
+  Game_CharacterBase.prototype.updateColliders = function () {
     var colliders = this._colliders;
     if (!colliders) return;
     var hidden = false;
@@ -2567,11 +2660,11 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.onPositionChange = function() {
+  Game_CharacterBase.prototype.onPositionChange = function () {
     this.refreshBushDepth();
   };
 
-  Game_CharacterBase.prototype.refreshBushDepth = function() {
+  Game_CharacterBase.prototype.refreshBushDepth = function () {
     if (this.isNormalPriority() && !this.isObjectCharacter() &&
       this.isOnBush() && !this.isJumping()) {
       if (!this.startedMoving()) this._bushDepth = 12;
@@ -2580,11 +2673,11 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.pixelJump = function(xPlus, yPlus) {
+  Game_CharacterBase.prototype.pixelJump = function (xPlus, yPlus) {
     return this.jump(xPlus / QMovement.tileSize, yPlus / QMovement.tileSize);
   };
 
-  Game_CharacterBase.prototype.pixelJumpForward = function(dist, dir) {
+  Game_CharacterBase.prototype.pixelJumpForward = function (dist, dir) {
     dir = dir || this._direction;
     dist = dist / QMovement.tileSize;
     var x = dir === 6 ? dist : dir === 4 ? -dist : 0;
@@ -2592,18 +2685,18 @@ function ColliderManager() {
     this.jump(x, y);
   };
 
-  Game_CharacterBase.prototype.pixelJumpBackward = function(dist) {
+  Game_CharacterBase.prototype.pixelJumpBackward = function (dist) {
     this.pixelJumpFixed(this.reverseDir(this.direction()), dist);
   };
 
-  Game_CharacterBase.prototype.pixelJumpFixed = function(dir, dist) {
+  Game_CharacterBase.prototype.pixelJumpFixed = function (dir, dist) {
     var lastDirectionFix = this.isDirectionFixed();
     this.setDirectionFix(true);
     this.pixelJumpForward(dist, dir);
     this.setDirectionFix(lastDirectionFix);
   };
 
-  Game_CharacterBase.prototype.moveStraight = function(dir, dist) {
+  Game_CharacterBase.prototype.moveStraight = function (dir, dist) {
     dist = dist || this.moveTiles();
     this.setMovementSuccess(this.canPixelPass(this._px, this._py, dir, dist));
     var originalSpeed = this._moveSpeed;
@@ -2629,7 +2722,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.moveDiagonally = function(horz, vert, dist) {
+  Game_CharacterBase.prototype.moveDiagonally = function (horz, vert, dist) {
     dist = dist || this.moveTiles();
     this.setMovementSuccess(this.canPixelPassDiagonally(this._px, this._py, horz, vert, dist));
     var originalSpeed = this._moveSpeed;
@@ -2658,7 +2751,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.moveRadian = function(radian, dist) {
+  Game_CharacterBase.prototype.moveRadian = function (radian, dist) {
     dist = dist || this.moveTiles();
     this.fixedRadianMove(radian, dist);
     if (!this.isMovementSucceeded() && this.smartMove() > 1) {
@@ -2680,7 +2773,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.fixedMove = function(dir, dist) {
+  Game_CharacterBase.prototype.fixedMove = function (dir, dist) {
     dist = dist || this.moveTiles();
     dir = dir === 5 ? this.direction() : dir;
     if ([1, 3, 7, 9].contains(dir)) {
@@ -2703,7 +2796,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.fixedDiagMove = function(horz, vert, dist) {
+  Game_CharacterBase.prototype.fixedDiagMove = function (horz, vert, dist) {
     dist = dist || this.moveTiles();
     this.setMovementSuccess(this.canPixelPassDiagonally(this._px, this._py, horz, vert));
     this.setDirection(this.direction8(horz, vert));
@@ -2720,7 +2813,7 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.fixedRadianMove = function(radian, dist) {
+  Game_CharacterBase.prototype.fixedRadianMove = function (radian, dist) {
     dist = dist || this.moveTiles();
     var dir = this.radianToDirection(radian, true);
     var xAxis = Math.cos(radian);
@@ -2746,14 +2839,14 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.fixedMoveBackward = function(dist) {
+  Game_CharacterBase.prototype.fixedMoveBackward = function (dist) {
     var lastDirectionFix = this.isDirectionFixed();
     this.setDirectionFix(true);
     this.fixedMove(this.reverseDir(this.direction()), dist);
     this.setDirectionFix(lastDirectionFix);
   };
 
-  Game_CharacterBase.prototype.arc = function(pivotX, pivotY, radians, cc, frames) {
+  Game_CharacterBase.prototype.arc = function (pivotX, pivotY, radians, cc, frames) {
     var cc = cc ? 1 : -1;
     var dx = this._px - pivotX;
     var dy = this._py - pivotY;
@@ -2768,11 +2861,11 @@ function ColliderManager() {
     this._angularSpeed = radians / frames;
   };
 
-  Game_CharacterBase.prototype.smartMove = function() {
+  Game_CharacterBase.prototype.smartMove = function () {
     return this._smartMove;
   };
 
-  Game_CharacterBase.prototype.smartMoveDir8 = function(dir) {
+  Game_CharacterBase.prototype.smartMoveDir8 = function (dir) {
     var dist = this.moveTiles();
     var collider = this.collider('collision');
     var x1 = this._px;
@@ -2781,7 +2874,7 @@ function ColliderManager() {
     var y2 = $gameMap.roundPYWithDirection(y1, dir, dist);
     collider.moveTo(x2, y2);
     var collided = false;
-    ColliderManager.getCharactersNear(collider, (function(chara) {
+    ColliderManager.getCharactersNear(collider, (function (chara) {
       if (chara.isThrough() || chara === this || !chara.isNormalPriority() ||
         /<smartdir>/i.test(chara.notes())) {
         return false;
@@ -2832,7 +2925,7 @@ function ColliderManager() {
     this.increaseSteps();
   };
 
-  Game_CharacterBase.prototype.smartMoveSpeed = function(dir) {
+  Game_CharacterBase.prototype.smartMoveSpeed = function (dir) {
     var diag = dir.constructor === Array;
     while (!this.isMovementSucceeded()) {
       // should improve by figuring out what 1 pixel is in terms of movespeed
@@ -2847,12 +2940,12 @@ function ColliderManager() {
     }
   };
 
-  Game_CharacterBase.prototype.reloadColliders = function() {
+  Game_CharacterBase.prototype.reloadColliders = function () {
     this.removeColliders();
     this.setupColliders();
   };
 
-  Game_CharacterBase.prototype.removeColliders = function() {
+  Game_CharacterBase.prototype.removeColliders = function () {
     ColliderManager.remove(this);
     for (var collider in this._colliders) {
       if (!this._colliders.hasOwnProperty(collider)) continue;
@@ -2865,7 +2958,7 @@ function ColliderManager() {
   // Can pass multiple types into args, ect:
   // collider('collision', 'interaction', 'default')
   // will return first one thats found
-  Game_CharacterBase.prototype.collider = function(type, alternative) {
+  Game_CharacterBase.prototype.collider = function (type, alternative) {
     if (!this._colliders) this.setupColliders();
     for (var i = 0; i < arguments.length; i++) {
       if (this._colliders[arguments[i]]) {
@@ -2875,11 +2968,11 @@ function ColliderManager() {
     return this._colliders['default'];
   };
 
-  Game_CharacterBase.prototype.defaultColliderConfig = function() {
+  Game_CharacterBase.prototype.defaultColliderConfig = function () {
     return 'box,0,0';
   };
 
-  Game_CharacterBase.prototype.setupColliders = function() {
+  Game_CharacterBase.prototype.setupColliders = function () {
     this._colliders = {};
     var defaultCollider = this.defaultColliderConfig();
     var notes = this.notes(true);
@@ -2902,19 +2995,19 @@ function ColliderManager() {
     this.moveColliders();
   };
 
-  Game_CharacterBase.prototype.makeCollider = function(type, settings) {
+  Game_CharacterBase.prototype.makeCollider = function (type, settings) {
     this._colliders[type] = ColliderManager.convertToCollider(settings);
     this._colliders[type].oy -= this.shiftY();
     this._colliders[type]._charaId = this.charaId();
     ColliderManager.addCollider(this._colliders[type], -1, true);
   };
 
-  Game_CharacterBase.prototype.changeCollider = function(type, settings) {
+  Game_CharacterBase.prototype.changeCollider = function (type, settings) {
     this._overrideColliders[type] = settings;
     this.reloadColliders();
   };
 
-  Game_CharacterBase.prototype.makeBounds = function() {
+  Game_CharacterBase.prototype.makeBounds = function () {
     var minX = null;
     var maxX = null;
     var minY = null;
@@ -2942,7 +3035,7 @@ function ColliderManager() {
     ColliderManager.addCharacter(this, 0);
   };
 
-  Game_CharacterBase.prototype.moveColliders = function(x, y) {
+  Game_CharacterBase.prototype.moveColliders = function (x, y) {
     x = typeof x === 'number' ? x : this.px;
     y = typeof y === 'number' ? y : this.py;
     var prev = this._colliders['bounds'].sectorEdge();
@@ -2954,13 +3047,13 @@ function ColliderManager() {
     ColliderManager.updateGrid(this, prev);
   };
 
-  Game_CharacterBase.prototype.cx = function(grid) {
+  Game_CharacterBase.prototype.cx = function (grid) {
     var x = this.collider('collision').center.x;;
     if (grid) x /= QMovement.tileSize;
     return x;
   };
 
-  Game_CharacterBase.prototype.cy = function(grid) {
+  Game_CharacterBase.prototype.cy = function (grid) {
     var y = this.collider('collision').center.y;
     if (grid) y /= QMovement.tileSize;
     return y;
@@ -2970,9 +3063,9 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Character
 
-(function() {
+(function () {
   var Alias_Game_Character_processMoveCommand = Game_Character.prototype.processMoveCommand;
-  Game_Character.prototype.processMoveCommand = function(command) {
+  Game_Character.prototype.processMoveCommand = function (command) {
     this.subMVMoveCommands(command);
     if (this.subQMoveCommand(command)) {
       command = this._moveRoute.list[this._moveRouteIndex];
@@ -2981,7 +3074,7 @@ function ColliderManager() {
     Alias_Game_Character_processMoveCommand.call(this, command);
   };
 
-  Game_Character.prototype.subMVMoveCommands = function(command) {
+  Game_Character.prototype.subMVMoveCommands = function (command) {
     var gc = Game_Character;
     var params = command.parameters;
     switch (command.code) {
@@ -3042,7 +3135,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Character.prototype.subQMoveCommand = function(command) {
+  Game_Character.prototype.subQMoveCommand = function (command) {
     var gc = Game_Character;
     var code = command.code;
     var params = command.parameters;
@@ -3059,7 +3152,7 @@ function ColliderManager() {
     return false;
   };
 
-  Game_Character.prototype.processQMoveCommands = function(command) {
+  Game_Character.prototype.processQMoveCommands = function (command) {
     var params = command.parameters;
     switch (command.code) {
       case 'arc': {
@@ -3091,7 +3184,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Character.prototype.subArc = function(settings) {
+  Game_Character.prototype.subArc = function (settings) {
     var cmd = {};
     cmd.code = 'arc';
     cmd.parameters = QPlus.stringToAry(settings);
@@ -3099,7 +3192,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_Character.prototype.subArc2 = function(settings) {
+  Game_Character.prototype.subArc2 = function (settings) {
     var cmd = {};
     cmd.code = 'arc2';
     cmd.parameters = QPlus.stringToAry(settings);
@@ -3107,7 +3200,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_Character.prototype.subQMove = function(settings) {
+  Game_Character.prototype.subQMove = function (settings) {
     settings = QPlus.stringToAry(settings);
     var dir = settings[0];
     var amt = settings[1];
@@ -3149,7 +3242,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_Character.prototype.subQMove2 = function(settings) {
+  Game_Character.prototype.subQMove2 = function (settings) {
     settings = QPlus.stringToAry(settings);
     var radian = settings[0];
     var dist = settings[1];
@@ -3173,7 +3266,7 @@ function ColliderManager() {
     return true;
   };
 
-  Game_Character.prototype.moveRandom = function() {
+  Game_Character.prototype.moveRandom = function () {
     var d = 2 + Math.randomInt(4) * 2;
     if (this.canPixelPass(this._px, this._py, d)) {
       this.moveStraight(d);
@@ -3181,18 +3274,12 @@ function ColliderManager() {
   };
 
   var Alias_Game_Character_moveTowardCharacter = Game_Character.prototype.moveTowardCharacter;
-  Game_Character.prototype.moveTowardCharacter = function(character) {
+  Game_Character.prototype.moveTowardCharacter = function (character) {
     if ($gameMap.offGrid()) {
       //-------iVillain edit------------------
-      let dx = 0;
-      let dy = 0;
-      try {
-        dx = this.deltaPXFrom(character.cx());
-        dy = this.deltaPYFrom(character.cy());
-      } catch (e) {
-        dx = this.deltaXFrom(character.x);
-        dy = this.deltaYFrom(character.y);
-      }
+      let result = this.dXYCheck(character);
+      let dx = result[0]
+      let dy = result[1];
       //-------iVillain edit------------------
       var radian = Math.atan2(-dy, -dx);
       if (radian < 0) radian += Math.PI * 2;
@@ -3206,10 +3293,13 @@ function ColliderManager() {
   };
 
   var Alias_Game_Character_moveAwayFromCharacter = Game_Character.prototype.moveAwayFromCharacter;
-  Game_Character.prototype.moveAwayFromCharacter = function(character) {
+  Game_Character.prototype.moveAwayFromCharacter = function (character) {
     if ($gameMap.offGrid()) {
-      var dx = this.deltaPXFrom(character.cx());
-      var dy = this.deltaPYFrom(character.cy());
+      //-------iVillain edit------------------
+      let result = this.dXYCheck(character);
+      let dx = result[0]
+      let dy = result[1];
+      //-------iVillain edit------------------
       var radian = Math.atan2(dy, dx);
       if (radian < 0) radian += Math.PI * 2;
       var oldSM = this._smartMove;
@@ -3221,13 +3311,33 @@ function ColliderManager() {
     }
   };
 
-  Game_Character.prototype.turnTowardCharacter = function(character) {
-    var dx = this.deltaPXFrom(character.cx());
-    var dy = this.deltaPYFrom(character.cy());
+  Game_Character.prototype.turnTowardCharacter = function (character) {
+    //-------iVillain edit------------------
+    let result = this.dXYCheck(character);
+    let dx = result[0]
+    let dy = result[1];
+    //-------iVillain edit------------------
     this.setRadian(Math.atan2(-dy, -dx));
   };
 
-  Game_Character.prototype.turnTowardCharacterForward = function(character, dt) {
+  //-------iVillain edit------------------
+  Game_Character.prototype.dXYCheck = function (character) {
+    //-------iVillain edit------------------
+    let dx = 0;
+    let dy = 0;
+    try {
+      dx = this.deltaPXFrom(character.cx());
+      dy = this.deltaPYFrom(character.cy());
+    } catch (e) {
+      dx = this.deltaXFrom(character.x);
+      dy = this.deltaYFrom(character.y);
+    }
+    return [dx, dy]
+  };
+  //-------iVillain edit------------------
+
+
+  Game_Character.prototype.turnTowardCharacterForward = function (character, dt) {
     if (!character.isMoving()) {
       return this.turnTowardCharacter(character);
     }
@@ -3240,27 +3350,30 @@ function ColliderManager() {
     this.setRadian(Math.atan2(-dy, -dx));
   };
 
-  Game_Character.prototype.turnAwayFromCharacter = function(character) {
-    var dx = this.deltaPXFrom(character.cx());
-    var dy = this.deltaPYFrom(character.cy());
+  Game_Character.prototype.turnAwayFromCharacter = function (character) {
+    //-------iVillain edit------------------
+    let result = this.dXYCheck(character);
+    let dx = result[0]
+    let dy = result[1];
+    //-------iVillain edit------------------
     this.setRadian(Math.atan2(dy, dx));
   };
 
-  Game_Character.prototype.deltaPXFrom = function(x) {
+  Game_Character.prototype.deltaPXFrom = function (x) {
     return $gameMap.deltaPX(this.cx(), x);
   };
 
-  Game_Character.prototype.deltaPYFrom = function(y) {
+  Game_Character.prototype.deltaPYFrom = function (y) {
     return $gameMap.deltaPY(this.cy(), y);
   };
 
-  Game_Character.prototype.pixelDistanceFrom = function(x, y) {
+  Game_Character.prototype.pixelDistanceFrom = function (x, y) {
     return $gameMap.distance(this.cx(), this.cy(), x, y);
   };
 
   // Returns the px, py needed for this character to be center aligned
   // with the character passed in (align is based off collision collider)
-  Game_Character.prototype.centerWith = function(character) {
+  Game_Character.prototype.centerWith = function (character) {
     var dx1 = this.cx() - this._px;
     var dy1 = this.cy() - this._py;
     var dx2 = character.cx() - character._px;
@@ -3270,7 +3383,7 @@ function ColliderManager() {
     return new Point(character._px + dx, character._py + dy);
   };
 
-  Game_Character.prototype.centerWithCollider = function(collider) {
+  Game_Character.prototype.centerWithCollider = function (collider) {
     var dx1 = this.cx() - this._px;
     var dy1 = this.cy() - this._py;
     var dx2 = collider.center.x - collider.x;
@@ -3280,7 +3393,7 @@ function ColliderManager() {
     return new Point(collider.x + dx, collider.y + dy);
   };
 
-  Game_Character.prototype.adjustPosition = function(xf, yf) {
+  Game_Character.prototype.adjustPosition = function (xf, yf) {
     var dx = xf - this._px;
     var dy = yf - this._py;
     var radian = Math.atan2(dy, dx);
@@ -3306,9 +3419,9 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Player
 
-(function() {
+(function () {
   var Alias_Game_Player_initMembers = Game_Player.prototype.initMembers;
-  Game_Player.prototype.initMembers = function() {
+  Game_Player.prototype.initMembers = function () {
     Alias_Game_Player_initMembers.call(this);
     this._lastMouseRequested = 0;
     this._requestMouseMove = false;
@@ -3316,17 +3429,17 @@ function ColliderManager() {
     this._smartMove = QMovement.smartMove;
   };
 
-  Game_Player.prototype.defaultColliderConfig = function() {
+  Game_Player.prototype.defaultColliderConfig = function () {
     return QMovement.playerCollider;
   };
 
   var Alias_Game_Player_refresh = Game_Player.prototype.refresh;
-  Game_Player.prototype.refresh = function() {
+  Game_Player.prototype.refresh = function () {
     this.reloadColliders();
     Alias_Game_Player_refresh.call(this);
   };
 
-  Game_Player.prototype.requestMouseMove = function() {
+  Game_Player.prototype.requestMouseMove = function () {
     var currFrame = Graphics.frameCount;
     var dt = currFrame - this._lastMouseRequested;
     if (dt >= 5) {
@@ -3337,7 +3450,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.moveByMouse = function(x, y) {
+  Game_Player.prototype.moveByMouse = function (x, y) {
     if (this.triggerTouchAction()) {
       this.clearMouseMove();
       return false;
@@ -3346,13 +3459,13 @@ function ColliderManager() {
     return true;
   };
 
-  Game_Player.prototype.clearMouseMove = function() {
+  Game_Player.prototype.clearMouseMove = function () {
     this._requestMouseMove = false;
     this._movingWithMouse = false;
     $gameTemp.clearDestination();
   };
 
-  Game_Player.prototype.moveByInput = function() {
+  Game_Player.prototype.moveByInput = function () {
     if (!this.startedMoving() && this.canMove()) {
       if (this.triggerAction()) return;
       var direction = QMovement.diagonal ? Input.dir8 : Input.dir4;
@@ -3384,15 +3497,15 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.moveInputHorizontal = function(dir) {
+  Game_Player.prototype.moveInputHorizontal = function (dir) {
     this.moveStraight(dir);
   };
 
-  Game_Player.prototype.moveInputVertical = function(dir) {
+  Game_Player.prototype.moveInputVertical = function (dir) {
     this.moveStraight(dir);
   };
 
-  Game_Player.prototype.moveInputDiagonal = function(dir) {
+  Game_Player.prototype.moveInputDiagonal = function (dir) {
     var diag = {
       1: [4, 2], 3: [6, 2],
       7: [4, 8], 9: [6, 8]
@@ -3400,7 +3513,7 @@ function ColliderManager() {
     this.moveDiagonally(diag[dir][0], diag[dir][1]);
   };
 
-  Game_Player.prototype.moveWithAnalog = function() {
+  Game_Player.prototype.moveWithAnalog = function () {
     var horz = Input._dirAxesA.x;
     var vert = Input._dirAxesA.y;
     if (horz === 0 && vert === 0) return;
@@ -3409,7 +3522,7 @@ function ColliderManager() {
     this.moveRadian(radian);
   };
 
-  Game_Player.prototype.update = function(sceneActive) {
+  Game_Player.prototype.update = function (sceneActive) {
     var lastScrolledX = this.scrolledX();
     var lastScrolledY = this.scrolledY();
     var wasMoving = this.isMoving();
@@ -3424,7 +3537,7 @@ function ColliderManager() {
     this._followers.update();
   };
 
-  Game_Player.prototype.updateNonmoving = function(wasMoving) {
+  Game_Player.prototype.updateNonmoving = function (wasMoving) {
     if (!$gameMap.isEventRunning()) {
       if (wasMoving) {
         if (this._freqCount >= this.freqThreshold()) {
@@ -3445,7 +3558,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.updateDashing = function() {
+  Game_Player.prototype.updateDashing = function () {
     if (this.startedMoving()) return;
     if (this.canMove() && !this.isInVehicle() && !$gameMap.isDashDisabled()) {
       this._dashing = this.isDashButtonPressed() || $gameTemp.isDestinationValid();
@@ -3454,13 +3567,13 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.startMapEvent = function(x, y, triggers, normal) {
+  Game_Player.prototype.startMapEvent = function (x, y, triggers, normal) {
     if (!$gameMap.isEventRunning()) {
       var collider = this.collider('interaction');
       var x1 = this._px;
       var y1 = this._py;
       collider.moveTo(x, y);
-      var events = ColliderManager.getCharactersNear(collider, function(chara) {
+      var events = ColliderManager.getCharactersNear(collider, function (chara) {
         return this.collidesWithEvent(chara, 'interaction');
       }.bind(this))
       collider.moveTo(x1, y1);
@@ -3470,7 +3583,7 @@ function ColliderManager() {
       }
       var cx = this.cx();
       var cy = this.cy();
-      events.sort(function(a, b) {
+      events.sort(function (a, b) {
         return a.pixelDistanceFrom(cx, cy) - b.pixelDistanceFrom(cx, cy);
       })
       var event = events.shift();
@@ -3487,20 +3600,20 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.collidesWithEvent = function(event, type) {
+  Game_Player.prototype.collidesWithEvent = function (event, type) {
     if (event.constructor === Game_Event && !event._erased) {
       return event.collider('interaction').intersects(this.collider(type));
     }
     return false;
   };
 
-  Game_Player.prototype.checkEventTriggerHere = function(triggers) {
+  Game_Player.prototype.checkEventTriggerHere = function (triggers) {
     if (this.canStartLocalEvents()) {
       this.startMapEvent(this.collider('interaction').x, this.collider('interaction').y, triggers, false);
     }
   };
 
-  Game_Player.prototype.checkEventTriggerThere = function(triggers, x2, y2) {
+  Game_Player.prototype.checkEventTriggerThere = function (triggers, x2, y2) {
     if (this.canStartLocalEvents()) {
       var direction = this.direction();
       var x1 = this.collider('interaction').x;
@@ -3514,7 +3627,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Player.prototype.triggerTouchAction = function() {
+  Game_Player.prototype.triggerTouchAction = function () {
     if ($gameTemp.isDestinationValid()) {
       var dist = this.pixelDistanceFrom($gameTemp.destinationPX(), $gameTemp.destinationPY());
       if (dist <= QMovement.tileSize * 1.5) {
@@ -3553,7 +3666,7 @@ function ColliderManager() {
     return false;
   };
 
-  Game_Player.prototype.checkCounter = function(triggers, x2, y2) {
+  Game_Player.prototype.checkCounter = function (triggers, x2, y2) {
     var direction = this.direction();
     var x1 = this._px;
     var y1 = this._py;
@@ -3562,7 +3675,7 @@ function ColliderManager() {
     var collider = this.collider('interaction');
     collider.moveTo(x2, y2);
     var counter;
-    ColliderManager.getCollidersNear(collider, function(tile) {
+    ColliderManager.getCollidersNear(collider, function (tile) {
       if (!tile.isTile) return false;
       if (tile.isCounter && tile.intersects(collider)) {
         counter = tile;
@@ -3586,22 +3699,22 @@ function ColliderManager() {
     return false;
   };
 
-  Game_Player.prototype.airshipHere = function() {
+  Game_Player.prototype.airshipHere = function () {
     // TODO
     return false;
   };
 
-  Game_Player.prototype.shipBoatThere = function(x2, y2) {
+  Game_Player.prototype.shipBoatThere = function (x2, y2) {
     // TODO
     return false;
   };
 
   // TODO create follower support addon
-  Game_Player.prototype.moveStraight = function(d, dist) {
+  Game_Player.prototype.moveStraight = function (d, dist) {
     Game_Character.prototype.moveStraight.call(this, d, dist);
   };
 
-  Game_Player.prototype.moveDiagonally = function(horz, vert) {
+  Game_Player.prototype.moveDiagonally = function (horz, vert) {
     Game_Character.prototype.moveDiagonally.call(this, horz, vert);
   };
 })();
@@ -3609,15 +3722,15 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Game_Event
 
-(function() {
+(function () {
   var Alias_Game_Event_clearPageSettings = Game_Event.prototype.clearPageSettings;
-  Game_Event.prototype.clearPageSettings = function() {
+  Game_Event.prototype.clearPageSettings = function () {
     Alias_Game_Event_clearPageSettings.call(this);
     this._ignoreCharacters = [];
   };
 
   var Alias_Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
-  Game_Event.prototype.setupPageSettings = function() {
+  Game_Event.prototype.setupPageSettings = function () {
     Alias_Game_Event_setupPageSettings.call(this);
     this.reloadColliders();
     this.initialPosition();
@@ -3627,13 +3740,13 @@ function ColliderManager() {
     var ignore = /<ignoreCharas:(.*?)>/i.exec(notes);
     this._ignoreCharacters = [];
     if (ignore) {
-      this._ignoreCharacters = ignore[1].split(',').map(function(s) {
+      this._ignoreCharacters = ignore[1].split(',').map(function (s) {
         return QPlus.charaIdToId(s);
       })
     }
   };
 
-  Game_Event.prototype.initialPosition = function() {
+  Game_Event.prototype.initialPosition = function () {
     var ox = /<ox[=|:](-?[0-9]+)>/i.exec(this.comments(true)) || 0;
     var oy = /<oy[=|:](-?[0-9]+)>/i.exec(this.comments(true)) || 0;
     if (ox) ox = Number(ox[1]) || 0;
@@ -3647,16 +3760,16 @@ function ColliderManager() {
     this.setPixelPosition(this.px + ox, this.py + oy);
   };
 
-  Game_Event.prototype.defaultColliderConfig = function() {
+  Game_Event.prototype.defaultColliderConfig = function () {
     return QMovement.eventCollider;
   };
 
-  Game_Event.prototype.ignoreCharacters = function(type) {
+  Game_Event.prototype.ignoreCharacters = function (type) {
     var ignores = Game_CharacterBase.prototype.ignoreCharacters.call(this, type);
     return ignores.concat(this._ignoreCharacters);
   };
 
-  Game_Event.prototype.updateStop = function() {
+  Game_Event.prototype.updateStop = function () {
     if (this._locked) {
       this._freqCount = this.freqThreshold();
       this.resetStopCount();
@@ -3667,7 +3780,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Event.prototype.updateSelfMovement = function() {
+  Game_Event.prototype.updateSelfMovement = function () {
     if (!this._locked && this.isNearTheScreen()) {
       if (this._freqCount < this.freqThreshold()) {
         switch (this._moveType) {
@@ -3688,7 +3801,7 @@ function ColliderManager() {
   };
 
   // TODO stop random dir from reseting every frame if event can't move
-  Game_Event.prototype.moveTypeRandom = function() {
+  Game_Event.prototype.moveTypeRandom = function () {
     if (this._freqCount === 0 || this._typeRandomDir === null) {
       this._typeRandomDir = 2 * (Math.randomInt(4) + 1);
     }
@@ -3698,7 +3811,7 @@ function ColliderManager() {
     this.moveStraight(this._typeRandomDir);
   };
 
-  Game_Event.prototype.moveTypeTowardPlayer = function() {
+  Game_Event.prototype.moveTypeTowardPlayer = function () {
     if (this.isNearThePlayer()) {
       if (this._freqCount === 0 || this._typeTowardPlayer === null) {
         this._typeTowardPlayer = Math.randomInt(6);
@@ -3722,7 +3835,7 @@ function ColliderManager() {
     }
   };
 
-  Game_Event.prototype.checkEventTriggerTouch = function(x, y) {
+  Game_Event.prototype.checkEventTriggerTouch = function (x, y) {
     if (!$gameMap.isEventRunning()) {
       if (this._trigger === 2 && !this.isJumping() && this.isNormalPriority()) {
         var collider = this.collider('collision');
@@ -3730,7 +3843,7 @@ function ColliderManager() {
         var prevY = collider.y;
         collider.moveTo(x, y);
         var collided = false;
-        ColliderManager.getCharactersNear(collider, (function(chara) {
+        ColliderManager.getCharactersNear(collider, (function (chara) {
           if (chara.constructor !== Game_Player) return false;
           collided = chara.collider('collision').intersects(collider);
           return 'break';
@@ -3749,11 +3862,11 @@ function ColliderManager() {
 //-----------------------------------------------------------------------------
 // Scene_Map
 
-(function() {
+(function () {
   Input.keyMapper[121] = 'f10';
 
   var Alias_Scene_Map_updateMain = Scene_Map.prototype.updateMain;
-  Scene_Map.prototype.updateMain = function() {
+  Scene_Map.prototype.updateMain = function () {
     Alias_Scene_Map_updateMain.call(this);
     var key = Imported.QInput ? '#f10' : 'f10';
     if ($gameTemp.isPlaytest() && Input.isTriggered(key)) {
@@ -3762,7 +3875,7 @@ function ColliderManager() {
     ColliderManager.update();
   };
 
-  Scene_Map.prototype.processMapTouch = function() {
+  Scene_Map.prototype.processMapTouch = function () {
     if (TouchInput.isTriggered() || this._touchCount > 0) {
       if (TouchInput.isPressed()) {
         if (this._touchCount === 0 || this._touchCount >= 20) {
@@ -3783,7 +3896,7 @@ function ColliderManager() {
     }
   };
 
-  Scene_Map.prototype.updateCallMenu = function() {
+  Scene_Map.prototype.updateCallMenu = function () {
     if (this.isMenuEnabled()) {
       if (this.isMenuCalled()) {
         this.menuCalling = true;
@@ -3804,11 +3917,11 @@ function Sprite_Collider() {
   this.initialize.apply(this, arguments);
 }
 
-(function() {
+(function () {
   Sprite_Collider.prototype = Object.create(Sprite.prototype);
   Sprite_Collider.prototype.constructor = Sprite_Collider;
 
-  Sprite_Collider.prototype.initialize = function(collider, duration) {
+  Sprite_Collider.prototype.initialize = function (collider, duration) {
     Sprite.prototype.initialize.call(this);
     this.z = 7;
     this._duration = duration || 0;
@@ -3817,7 +3930,7 @@ function Sprite_Collider() {
     this.checkChanges();
   };
 
-  Sprite_Collider.prototype.setCache = function() {
+  Sprite_Collider.prototype.setCache = function () {
     this._cache = {
       color: this._collider.color,
       width: this._collider.width,
@@ -3826,14 +3939,14 @@ function Sprite_Collider() {
     }
   };
 
-  Sprite_Collider.prototype.needsRedraw = function() {
+  Sprite_Collider.prototype.needsRedraw = function () {
     return this._cache.width !== this._collider.width ||
       this._cache.height !== this._collider.height ||
       this._cache.color !== this._collider.color ||
       this._cache.radian !== this._collider._radian
   };
 
-  Sprite_Collider.prototype.setupCollider = function(collider) {
+  Sprite_Collider.prototype.setupCollider = function (collider) {
     this._collider = collider;
     var isNew = false;
     if (!this._colliderSprite) {
@@ -3846,7 +3959,7 @@ function Sprite_Collider() {
     }
   };
 
-  Sprite_Collider.prototype.drawCollider = function() {
+  Sprite_Collider.prototype.drawCollider = function () {
     var collider = this._collider;
     this._colliderSprite.clear();
     var color = (collider.color || '#ff0000').replace('#', '');
@@ -3863,7 +3976,7 @@ function Sprite_Collider() {
     this._colliderSprite.endFill();
   };
 
-  Sprite_Collider.prototype.update = function() {
+  Sprite_Collider.prototype.update = function () {
     Sprite.prototype.update.call(this);
     this.checkChanges();
     if (this._duration >= 0 || this._collider.kill) {
@@ -3871,7 +3984,7 @@ function Sprite_Collider() {
     }
   };
 
-  Sprite_Collider.prototype.checkChanges = function() {
+  Sprite_Collider.prototype.checkChanges = function () {
     this.visible = !this._collider._isHidden;
     this.x = this._collider.x + this._collider.ox;
     this.x -= $gameMap.displayX() * QMovement.tileSize;
@@ -3890,7 +4003,7 @@ function Sprite_Collider() {
     }
   };
 
-  Sprite_Collider.prototype.updateDecay = function() {
+  Sprite_Collider.prototype.updateDecay = function () {
     this._duration--;
     if (this._duration <= 0 || this._collider.kill) {
       ColliderManager.removeSprite(this);
@@ -3904,8 +4017,8 @@ function Sprite_Collider() {
 //
 // The sprite for displaying the destination place of the touch input.
 
-(function() {
-  Sprite_Destination.prototype.updatePosition = function() {
+(function () {
+  Sprite_Destination.prototype.updatePosition = function () {
     var tileWidth = $gameMap.tileWidth();
     var tileHeight = $gameMap.tileHeight();
     var x = $gameTemp.destinationPX();
@@ -3918,17 +4031,28 @@ function Sprite_Collider() {
 //-----------------------------------------------------------------------------
 // Spriteset_Map
 
-(function() {
+(function () {
   var Alias_Spriteset_Map_createLowerLayer = Spriteset_Map.prototype.createLowerLayer;
-  Spriteset_Map.prototype.createLowerLayer = function() {
+  Spriteset_Map.prototype.createLowerLayer = function () {
     Alias_Spriteset_Map_createLowerLayer.call(this);
-    if ($gameTemp.isPlaytest()) {
+    /*if ($gameTemp.isPlaytest()) {
+      this.createColliders();
+    }*/
+    if (
+      $gameTemp.isPlaytest() &&
+      !this.children.some((c) => c === ColliderManager.container)
+    ) {
       this.createColliders();
     }
   };
 
-  Spriteset_Map.prototype.createColliders = function() {
+  Spriteset_Map.prototype.createColliders = function () {
+    try{
     this.addChild(ColliderManager.container);
+    }
+    catch (e){
+      
+    }
     // also get collision map here
   };
 })();

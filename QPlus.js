@@ -859,7 +859,7 @@ function SimpleTilemap() {
 
   //-----------------------------------------------------------------------------
   // Scene_Boot
-
+  
   var Alias_Scene_Boot_start = Scene_Boot.prototype.start;
   Scene_Boot.prototype.start = function() {
     if (DataManager.isBattleTest() || DataManager.isEventTest()) {
@@ -870,6 +870,7 @@ function SimpleTilemap() {
       this.checkPlayerLocation();
       DataManager.setupNewGame();
       SceneManager.goto(Scene_Map);
+      this.resizeScreen();
       this.updateDocumentTitle();
     } else {
       Alias_Scene_Boot_start.call(this);
@@ -889,7 +890,7 @@ function SimpleTilemap() {
     var inside = false;
     var windows = this._windowLayer.children;
     for (var i = 0; i < windows.length; i++) {
-      if (windows[i].visible && windows[i].isOpen() && windows[i].isMouseInside()) {
+      if (windows[i]._isWindow && windows[i].visible && windows[i].isOpen() && windows[i].isMouseInside()) {
         inside = true;
         break;
       }

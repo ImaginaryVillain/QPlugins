@@ -143,7 +143,6 @@ Imported.QM_CollisionMap = '1.0.1';
   --------------------------*/
   Game_Map.prototype.setupCollisionMap = function() {
     var cm = /<cm:(.*?)>/i.exec($dataMap.note);
-    console.log(cm)
     // regionmaps are disabled
     //var rm = /<rm[=|:](.*?)>/i.exec($dataMap.note);
     this.loadCollisionmap(cm ? cm[1] : null);
@@ -153,7 +152,6 @@ Imported.QM_CollisionMap = '1.0.1';
     if (collisionMap) {
       ColliderManager.setCollisionMap(collisionMap);
       this._hasCM = true;
-      console.log(`true`, this._hasCM)
     } else {
       ColliderManager.clearCollisionMap();
       this._hasCM = false;
@@ -409,6 +407,7 @@ Imported.QM_CollisionMap = '1.0.1';
     for (var c = 0; c < 3; c++) {
       result += this._pixelData[i + c].toString(16).padZero(2);
     }
+
     return result;
   };
 })();
