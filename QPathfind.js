@@ -242,6 +242,7 @@ function QPathfind() {
   QPathfind._pathfinders = 0;
 
   QPathfind.prototype.initialize = function(charaId, endPoint, options) {
+    //console.log(charaId, endPoint, options, `charaId, endPoint, options`)
     this.initMembers(charaId, endPoint, options);
     this.beforeStart();
     this.update();
@@ -314,8 +315,30 @@ function QPathfind() {
       }
     }
     if (!canPass && this.options.earlyEnd) {
-      this.onFail();
+      this.onFail();  
     }
+
+    //iVillain edit--------
+    /*if (!canPass) {
+      $gamePlayer.collided = true;
+      console.log($gamePlayer.collided, `$gamePlayer.collided`)
+
+      if (Imported.QMovement) {
+        endPoint = new Point(this.character().px, this.character().py);
+      } else {
+        endPoint = new Point(this.character().x, this.character().y);
+      }
+      this._endNode = this.node(null, endPoint);
+      this.options.earlyEnd = true;
+      this.character().clearPathfind();
+      $gamePlayer.onPathfindComplete();
+      canPass = false;
+      $gameTemp.reserveCommonEvent(95);
+      return;
+    } else {
+      return canPass;
+    }*/
+    //--------------
     return canPass;
   };
 
@@ -478,7 +501,6 @@ function QPathfind() {
       colliderA.moveTo(x2, y2);
       var collided = colliderA.intersects(colliderB);
       colliderA.moveTo(this.character().px, this.character().py);
-      if (collided) return;
     }
     ot = ot === undefined ? 0 : ot;
     this._tick = this._smartTime - ot;
@@ -1042,6 +1064,10 @@ function QPathfind() {
     this._pathfind = null;
     this._isChasing = false;
     if (this._isPathfinding) {
+      //iVillain edit ---------------
+    //$gameTemp.reserveCommonEvent(95);
+    //console.log(`fail`)
+    //------------------------  
       this.processRouteEnd();
     }
   };
@@ -1117,7 +1143,18 @@ function QPathfind() {
         breakable: true,
         adjustEnd: true
       })
-      $gameTemp.setPixelDestination(x, y);
+      //iVillain edit---------
+      /*if ($gamePlayer.collided === true){
+        $gamePlayer.collided = false;
+        console.log(`fail`)
+        this.clearMouseMove();
+      } else {
+        console.log(`success`)
+        $gameTemp.setPixelDestination(x, y);
+      }*/
+
+
+      //-------------------
       return true;
     };
 

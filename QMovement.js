@@ -2203,6 +2203,7 @@ function ColliderManager() {
     this._overrideColliders[type] = settings;
     this.reloadColliders();
   };
+
   var Alias_Game_CharacterBase_setDirection = Game_CharacterBase.prototype.setDirection;
   Game_CharacterBase.prototype.setDirection = function (d) {
     //iVillain edit ---------------------------------------------
@@ -2401,7 +2402,27 @@ function ColliderManager() {
     var collided = false;
     ColliderManager.getCharactersNear(collider, function (chara) {
       collided = this.collidedWithCharacter(type, chara);
-      if (collided) return 'break';
+      if (collided) 
+          //iVillain edit
+          /*if (collider._charaId == 0){
+            $gamePlayer.hitBy = collider._charaId
+            console.log($gamePlayer.hitBy, `$gamePlayer.hitBy`)
+          } else {
+            $gameMap.event(collider._charaId).hitBy = chara._eventId
+            console.log($gameMap.event(collider._charaId).hitBy, `$gameMap.event(collider._charaId).hitBy`)
+          }*/
+          try {
+          if (chara._eventId > 0){
+            $gameMap.event(collider._charaId).hitBy = chara._eventId
+            //console.log($gameMap.event(collider._charaId).hitBy, `$gameMap.event(collider._charaId).hitBy`)
+          } else {
+            $gamePlayer.hitBy = collider._charaId
+            //console.log($gamePlayer.hitBy, `$gamePlayer.hitBy`)
+          }
+        } catch (e){
+
+        }
+      return 'break';
     }.bind(this));
     return collided;
   };
@@ -3415,7 +3436,7 @@ function ColliderManager() {
   Game_Player.prototype.moveByMouse = function (x, y) {
     if (this.triggerTouchAction()) {
       this.clearMouseMove();
-      return false;
+      return false;   
     }
     this._movingWithMouse = true;
     return true;
